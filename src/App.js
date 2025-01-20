@@ -1,9 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
+import BaseDeConocimientos from "./pages/BaseDeConocimientos";
+import Navbar from "./components/Navbar";
 
 const App = () => {
   return React.createElement(
@@ -26,6 +27,14 @@ const App = () => {
           React.createElement(Route, {
             path: "/login",
             element: React.createElement(LoginPage),
+          }),
+          React.createElement(Route, {
+            path: "/base-de-conocimientos",
+            element: React.createElement(BaseDeConocimientos),
+          }),
+          React.createElement(Route, {
+            path: "/logout",
+            element: React.createElement(HomePage),
           })
         )
       ),

@@ -12,15 +12,15 @@ const LoginPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Login:", { role });
-    navigate("/"); // Cambia esta ruta según donde desees redirigir
+    navigate("/base-de-conocimientos"); // Cambia esta ruta según donde desees redirigir
   };
 
   return React.createElement(
     "div",
     {
       style: {
-        height: "759px",
-        display: "flex", // Usamos flexbox para centrar
+        height: "100vh", // Ocupa toda la altura de la pantalla
+        display: "flex", // Flexbox para centrar
         justifyContent: "center",
         alignItems: "center",
         backgroundImage:
@@ -34,12 +34,13 @@ const LoginPage = () => {
       "div",
       {
         style: {
-          backgroundColor: "rgba(255, 255, 255, 0.95)", // Fondo translúcido
-          padding: "60px 40px",
+          backgroundColor: "rgba(255, 255, 255, 0.9)", // Fondo translúcido
+          padding: "40px",
           borderRadius: "10px",
-          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.3)",
           textAlign: "center",
-          width: "500px", // Ancho consistente para todos los elementos
+          width: "90%", // Ancho ajustable
+          maxWidth: "400px", // Máximo ancho para evitar agrandarse en pantallas grandes
         },
       },
       React.createElement(
@@ -65,10 +66,11 @@ const LoginPage = () => {
               backgroundColor: role === "Empleado" ? "#0073e6" : "#ffffff",
               color: role === "Empleado" ? "#ffffff" : "#0073e6",
               border: "2px solid #0073e6",
-              padding: "10px 0", // Tamaño consistente
-              borderRadius: "5px 0 0 5px", // Bordes redondeados solo en un lado
+              padding: "10px 0",
+              borderRadius: "5px 0 0 5px",
               cursor: "pointer",
               fontWeight: "bold",
+              transition: "all 0.3s ease", // Efecto suave al pasar de un rol a otro
             },
           },
           "Empleado"
@@ -84,9 +86,10 @@ const LoginPage = () => {
               color: role === "Administrativo" ? "#ffffff" : "#0073e6",
               border: "2px solid #0073e6",
               padding: "10px 0",
-              borderRadius: "0 5px 5px 0", // Bordes redondeados solo en un lado
+              borderRadius: "0 5px 5px 0",
               cursor: "pointer",
               fontWeight: "bold",
+              transition: "all 0.3s ease", // Efecto suave al pasar de un rol a otro
             },
           },
           "Administrativo"
@@ -99,12 +102,12 @@ const LoginPage = () => {
           type: "email",
           placeholder: "Correo electrónico",
           style: {
-            width: "95%",
-            padding: "10px",
-            marginBottom: "10px",
+            width: "93%",
+            padding: "12px",
+            marginBottom: "15px",
             borderRadius: "5px",
             border: "1px solid #ccc",
-            fontSize: "16px", // Tamaño consistente para el texto
+            fontSize: "16px",
           },
           required: true,
         }),
@@ -112,8 +115,8 @@ const LoginPage = () => {
           type: "password",
           placeholder: "Contraseña",
           style: {
-            width: "95%",
-            padding: "10px",
+            width: "93%",
+            padding: "12px",
             marginBottom: "20px",
             borderRadius: "5px",
             border: "1px solid #ccc",
@@ -128,14 +131,17 @@ const LoginPage = () => {
             style: {
               backgroundColor: "#0073e6",
               color: "#ffffff",
-              padding: "10px 0", // Altura consistente
+              padding: "12px",
               border: "none",
               borderRadius: "5px",
               cursor: "pointer",
               fontWeight: "bold",
               width: "100%",
               fontSize: "16px",
+              transition: "background-color 0.3s ease", // Efecto de transición al hover
             },
+            onMouseEnter: (e) => (e.target.style.backgroundColor = "#005bb5"),
+            onMouseLeave: (e) => (e.target.style.backgroundColor = "#0073e6"),
           },
           "Iniciar Sesión"
         )

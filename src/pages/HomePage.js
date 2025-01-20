@@ -8,7 +8,7 @@ const HomePage = () => {
       "header",
       { className: "home-header" },
       React.createElement("img", {
-        src: "/Logo.jpg",
+        src: "/gtded.jpg",
         alt: "Logo Corporaciones",
         className: "home-header-image",
       }),
