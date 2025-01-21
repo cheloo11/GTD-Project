@@ -12,7 +12,13 @@ const LoginPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Login:", { role });
-    navigate("/base-de-conocimientos"); // Cambia esta ruta según donde desees redirigir
+
+    // Redirigir según el rol seleccionado
+    if (role === "Empleado") {
+      navigate("/base-de-conocimientos");
+    } else if (role === "Administrativo") {
+      navigate("/admin/base-de-conocimientos");
+    }
   };
 
   return React.createElement(

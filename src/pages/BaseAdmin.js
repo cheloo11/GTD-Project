@@ -1,42 +1,25 @@
 import React, { useState } from "react";
 
-const BaseDeConocimientos = () => {
+const BaseDeConocimientosAdmin = () => {
   const servicios = [
     {
       id: 1,
       nombre: "Implementación y Gestión de Infraestructura Cloud (IaaS)",
       informacion:
-        "Ofrecemos servicios de infraestructura en la nube, como servidores virtuales, almacenamiento, redes y sistemas operativos, bajo demanda y escalables. Nos encargamos de la gestión, el mantenimiento y la seguridad de la infraestructura, permitiéndote enfocarte en tus aplicaciones y datos. Este servicio es ideal para empresas que buscan flexibilidad, agilidad y reducción de costos en su infraestructura TI. Adaptamos las soluciones a tus necesidades, ya sea que requieras un entorno de desarrollo, producción o disaster recovery.",
+        "Ofrecemos servicios de infraestructura en la nube, como servidores virtuales, almacenamiento, redes y sistemas operativos, bajo demanda y escalables.",
     },
     {
       id: 2,
       nombre: "Servicio de Seguridad Gestionada",
       informacion:
-        "Protegemos tus sistemas y datos con nuestro servicio de seguridad gestionada. Monitoreamos tu red las 24 horas, los 7 días de la semana, para detectar y responder a amenazas en tiempo real. Implementamos firewalls, sistemas de detección de intrusos, antivirus y otras herramientas de seguridad de última generación. Además, te asesoramos en la creación e implementación de directivas de seguridad robustas que aseguran el cumplimiento de las mejores prácticas y regulaciones.",
-    },
-    {
-      id: 3,
-      nombre: "Desarrollo de Aplicaciones a Medida",
-      informacion:
-        "Creamos software a la medida de tus necesidades empresariales. Analizamos tus procesos y requerimientos para diseñar, desarrollar y implementar soluciones de software que optimicen tu flujo de trabajo y te ayuden a alcanzar tus objetivos. Utilizamos metodologías ágiles para garantizar la entrega rápida de valor. Ofrecemos servicios de desarrollo web, móvil y de escritorio, utilizando tecnologías modernas y robustas. Nos encargamos de todo el ciclo de vida del desarrollo, desde la concepción hasta el despliegue y mantenimiento.",
-    },
-    {
-      id: 4,
-      nombre: "Soporte Técnico TI Help Desk",
-      informacion:
-        "Nuestro servicio de Help Desk brinda soporte técnico especializado a tus usuarios, resolviendo incidencias y problemas técnicos de hardware, software y redes. Ofrecemos diferentes canales de atención, como teléfono, correo electrónico y chat, para una rápida resolución. Nos encargamos de gestionar las incidencias, dar seguimiento y documentar las soluciones. Nos enfocamos en maximizar la disponibilidad y el rendimiento de tus herramientas y garantizar así la operación optima de los trabajadores de tu negocio.",
-    },
-    {
-      id: 5,
-      nombre: "Consultoría en Transformación Digital",
-      informacion:
-        "Acompañamos a tu empresa en su proceso de transformación digital. Analizamos tu situación actual, identificamos oportunidades de mejora e implementamos estrategias digitales que te permitan optimizar tus operaciones, innovar y aumentar tu competitividad. Te ayudamos a integrar nuevas tecnologías, mejorar la experiencia del cliente y adaptar tu modelo de negocio a la era digital, así aprovecharas el 100% del mundo tecnológico y aplicarlo a tu empresa.",
+        "Protegemos tus sistemas y datos con nuestro servicio de seguridad gestionada. Monitoreamos tu red las 24 horas, los 7 días de la semana.",
     },
   ];
 
   const [modalVisible, setModalVisible] = useState(false);
   const [servicioSeleccionado, setServicioSeleccionado] = useState(null);
   const [activeCategory, setActiveCategory] = useState(null);
+  const [showAgregarModal, setShowAgregarModal] = useState(false); // Modal para agregar servicio
 
   const handleServiceClick = (servicio) => {
     setServicioSeleccionado(servicio);
@@ -67,7 +50,7 @@ const BaseDeConocimientos = () => {
           padding: "20px",
         },
       },
-      // Área de búsqueda y servicios
+      // Área de búsqueda, botón de agregar y servicios
       React.createElement(
         "div",
         {
@@ -77,7 +60,7 @@ const BaseDeConocimientos = () => {
             flexDirection: "column",
           },
         },
-        // Barra de búsqueda
+        // Barra de búsqueda con botón de agregar
         React.createElement(
           "div",
           {
@@ -97,9 +80,26 @@ const BaseDeConocimientos = () => {
               borderRadius: "20px",
               fontSize: "14px",
             },
-          })
+          }),
+          React.createElement(
+            "button",
+            {
+              onClick: () => setShowAgregarModal(true),
+              style: {
+                marginLeft: "10px",
+                padding: "10px 20px",
+                backgroundColor: "#0073e6",
+                color: "#fff",
+                border: "none",
+                borderRadius: "5px",
+                cursor: "pointer",
+                fontWeight: "bold",
+              },
+            },
+            "Agregar Servicio"
+          )
         ),
-        // Área de servicios
+        // Lista de servicios
         React.createElement(
           "div",
           {
@@ -109,8 +109,8 @@ const BaseDeConocimientos = () => {
               borderRadius: "10px",
               padding: "20px",
               backgroundColor: "#f9f9f9",
-              maxHeight: "800px",
               overflowY: "auto",
+              maxHeight: "600px",
             },
           },
           React.createElement(
@@ -140,7 +140,7 @@ const BaseDeConocimientos = () => {
           )
         )
       ),
-      // Menú de filtro actualizado con funcionalidad desplegable
+      // Menú de filtro
       React.createElement(
         "div",
         {
@@ -151,8 +151,8 @@ const BaseDeConocimientos = () => {
             border: "1px solid #ccc",
             borderRadius: "10px",
             backgroundColor: "#f9f9f9",
-            maxWidth: "300px", // Máximo ancho para evitar que se extienda demasiado
-            maxHeight: "1000px", // Altura máxima para agregar scroll si es necesario
+            maxWidth: "300px", // Máximo ancho para evitar que se extienda demasiado\
+            maxHeight: "659px",
           },
         },
         React.createElement(
@@ -292,7 +292,7 @@ const BaseDeConocimientos = () => {
         )
       )
     ),
-
+    // Modal para visualizar información de un servicio
     // Modal
     modalVisible &&
       servicioSeleccionado &&
@@ -346,8 +346,141 @@ const BaseDeConocimientos = () => {
             "❌"
           )
         )
+      ),
+    // Modal para agregar un nuevo servicio
+    showAgregarModal &&
+      React.createElement(
+        "div",
+        {
+          style: {
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          },
+        },
+        React.createElement(
+          "div",
+          {
+            style: {
+              backgroundColor: "#fff",
+              padding: "20px",
+              borderRadius: "10px",
+              maxWidth: "400px",
+              width: "100%",
+            },
+          },
+          React.createElement(
+            "h3",
+            { style: { textAlign: "center", marginBottom: "10px" } },
+            "Agregar Nuevo Servicio"
+          ),
+          React.createElement("input", {
+            type: "text",
+            placeholder: "Nombre del servicio",
+            style: {
+              width: "93%",
+              marginBottom: "10px",
+              padding: "10px",
+              border: "1px solid #ccc",
+              borderRadius: "5px",
+            },
+          }),
+          React.createElement("textarea", {
+            placeholder: "Descripción del servicio",
+            style: {
+              width: "93%",
+              marginBottom: "10px",
+              padding: "10px",
+              border: "1px solid #ccc",
+              borderRadius: "5px",
+            },
+          }),
+          React.createElement("input", {
+            type: "file",
+            multiple: true,
+            style: {
+              marginBottom: "10px",
+            },
+          }),
+          React.createElement(
+            "select",
+            {
+              style: {
+                width: "100%",
+                padding: "10px",
+                marginBottom: "10px",
+                border: "1px solid #ccc",
+                borderRadius: "5px",
+              },
+            },
+            [
+              React.createElement(
+                "option",
+                { value: "" },
+                "Selecciona una categoría"
+              ),
+              React.createElement(
+                "option",
+                { value: "Conectividad" },
+                "Conectividad"
+              ),
+              React.createElement(
+                "option",
+                { value: "Seguridad" },
+                "Seguridad"
+              ),
+              React.createElement(
+                "option",
+                { value: "Multicloud" },
+                "Multicloud"
+              ),
+              React.createElement(
+                "option",
+                { value: "Transformación digital" },
+                "Transformación Digital"
+              ),
+            ]
+          ),
+          React.createElement(
+            "button",
+            {
+              style: {
+                backgroundColor: "#0073e6",
+                color: "#fff",
+                padding: "10px",
+                border: "none",
+                borderRadius: "5px",
+                cursor: "pointer",
+                width: "100%",
+                marginBottom: "10px",
+              },
+            },
+            "Guardar"
+          ),
+          React.createElement(
+            "button",
+            {
+              onClick: () => setShowAgregarModal(false),
+              style: {
+                backgroundColor: "#ccc",
+                padding: "10px",
+                border: "none",
+                borderRadius: "5px",
+                cursor: "pointer",
+                width: "100%",
+              },
+            },
+            "Cancelar"
+          )
+        )
       )
   );
 };
 
-export default BaseDeConocimientos;
+export default BaseDeConocimientosAdmin;

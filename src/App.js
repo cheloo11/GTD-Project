@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import BaseDeConocimientos from "./pages/BaseDeConocimientos";
 import Navbar from "./components/Navbar";
+import BaseAdmin from "./pages/BaseAdmin";
 
 const App = () => {
   return React.createElement(
@@ -35,6 +36,10 @@ const App = () => {
           React.createElement(Route, {
             path: "/logout",
             element: React.createElement(HomePage),
+          }),
+          React.createElement(Route, {
+            path: "/admin/base-de-conocimientos",
+            element: React.createElement(BaseAdmin),
           })
         )
       ),
